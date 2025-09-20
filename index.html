@@ -13,16 +13,12 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            color: #fff;
+            color: #333; /* 默认文字颜色改为深色 */
             padding: 20px;
-            background-image: url('images/index/in.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
             background-attachment: fixed;
         }
         
@@ -30,36 +26,72 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            text-align: center; /* 容器内文字居中 */
         }
         
         header {
             padding: 30px 0;
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: rgba(255, 255, 255, 0.8);
             border-radius: 10px;
             margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center; /* 头部文字居中 */
         }
         
         h1 {
             font-size: 3.5rem;
             margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            color: #333; /* 标题文字黑色 */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
         
         .subtitle {
             font-size: 1.5rem;
             margin-bottom: 30px;
             opacity: 0.9;
+            color: #333; /* 副标题文字黑色 */
+        }
+        
+        .profile-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+        }
+        
+        .profile-name {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .profile-bio {
+            font-size: 1.5rem;
+            color: #444;
+            margin-bottom: 10px;
         }
         
         .content-box {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(10px);
             border-radius: 15px;
             padding: 30px;
             margin-bottom: 30px;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            color: #333; /* 内容框文字黑色 */
+            text-align: center; /* 内容框文字居中 */
         }
         
         .features {
@@ -71,12 +103,14 @@
         }
         
         .feature {
-            background-color: rgba(255, 255, 255, 0.15);
+            background-color: rgba(255, 255, 255, 0.8);
             padding: 25px;
             border-radius: 12px;
             width: 300px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
+            color: #333; /* 特性框文字黑色 */
+            text-align: center; /* 特性框文字居中 */
         }
         
         .feature:hover {
@@ -86,13 +120,16 @@
         .feature h3 {
             margin-bottom: 15px;
             font-size: 1.8rem;
+            color: #333; /* 特性标题文字黑色 */
         }
         
         footer {
             margin-top: 50px;
             padding: 20px;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(255, 255, 255, 0.8);
             border-radius: 10px;
+            color: #333; /* 页脚文字黑色 */
+            text-align: center; /* 页脚文字居中 */
         }
         
         @media (max-width: 768px) {
@@ -108,15 +145,38 @@
                 flex-direction: column;
                 align-items: center;
             }
+            
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .profile-name {
+                font-size: 2rem;
+            }
+            
+            .profile-bio {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
 <body>
-    <h1 style="text-align: center;">个人主页</h1>
-    <p>
-    <img src="images/index/my.png">
-    <h2>justNekoah</h2>
-    <h3>B站：就是Neko啊</h3>
-    </p>
+    <div class="container">
+        <header>
+            <h1>个人主页</h1>
+            <p class="subtitle">欢迎来到我的个人空间</p>
+        </header>
+        
+        <div class="profile-content">
+            <img src="images/index/my.png" alt="个人头像" class="profile-img">
+            <h2 class="profile-name">justNekoah</h2>
+            <p class="profile-bio">B站：就是Neko啊</p>
+        </div>
+        
+        <footer>
+            <p>© 2023 justNekoah 个人主页 | 所有权利保留</p>
+        </footer>
+    </div>
 </body>
 </html>
