@@ -160,13 +160,6 @@
         <p>> <span>若您认为本页面为正常页面，请将原网址发送至站长邮箱（justNekoah@yeah.net）进行人工审核</span></p>
     </div>
 
-    <div class="theme-selector">
-        <strong style="color: white; display: block; margin-bottom: 8px;">选择背景主题:</strong>
-        <button class="red" onclick="changeTheme('red')">红色警报</button>
-        <button class="blue" onclick="changeTheme('blue-purple')">蓝紫色</button>
-        <button class="dark" onclick="changeTheme('dark-tech')">深色科技</button>
-    </div>
-
     <script>
         // 文字逐字显示效果
         var str = document.getElementsByTagName('div')[0].innerHTML.toString();
@@ -184,9 +177,6 @@
             }, 10);
         }, 0);
 
-        // 切换背景主题
-        function changeTheme(theme) {
-            document.body.className = theme;
         }
     </script>
 </body>
