@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - 页面未找到</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1a5f23 0%, #0d8b2f 50%, #063b14 100%);
+            color: #fff;
+            font-family: 'Microsoft YaHei', sans-serif;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .error-code {
+            font-size: 120px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 3px 3px 0 #000;
+            margin-bottom: 20px;
+            letter-spacing: 5px;
+        }
+        
+        .error-title {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #d4ffaa;
+        }
+        
+        .error-message {
+            font-size: 18px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+        
+        .bamboo {
+            position: absolute;
+            width: 40px;
+            height: 300px;
+            background: linear-gradient(90deg, #2e7d32 10%, #4caf50 10%, #4caf50 20%, #2e7d32 20%, #2e7d32 30%, #4caf50 30%, #4caf50 40%, #2e7d32 40%, #2e7d32 50%, #4caf50 50%, #4caf50 60%, #2e7d32 60%, #2e7d32 70%, #4caf50 70%, #4caf50 80%, #2e7d32 80%, #2e7d32 90%, #4caf50 90%, #4caf50 100%);
+            border-left: 4px solid #1b5e20;
+            border-right: 4px solid #1b5e20;
+        }
+        
+        .bamboo-left {
+            left: 40px;
+            bottom: -250px;
+            transform: rotate(5deg);
+        }
+        
+        .bamboo-right {
+            right: 40px;
+            bottom: -280px;
+            transform: rotate(-5deg);
+        }
+        
+        .bamboo-leaf {
+            position: absolute;
+            width: 60px;
+            height: 20px;
+            background-color: #4caf50;
+            border-radius: 0 50% 50% 0;
+            transform-origin: left center;
+        }
+        
+        .leaf1 { transform: rotate(-30deg); top: 50px; left: 38px; }
+        .leaf2 { transform: rotate(-10deg); top: 120px; left: 38px; }
+        .leaf3 { transform: rotate(10deg); top: 190px; left: 38px; }
+        .leaf4 { transform: rotate(210deg); top: 50px; right: 38px; }
+        .leaf5 { transform: rotate(190deg); top: 120px; right: 38px; }
+        .leaf6 { transform: rotate(170deg); top: 190px; right: 38px; }
+        
+        .home-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: #2e7d32;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: 2px solid #1b5e20;
+            margin-top: 20px;
+        }
+        
+        .home-btn:hover {
+            background: #1b5e20;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .error-code {
+                font-size: 100px;
+            }
+            
+            .error-title {
+                font-size: 28px;
+            }
+            
+            .bamboo {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="error-code">404</div>
+        <h1 class="error-title">页面未找到</h1>
+        <p class="error-message">抱歉，您访问的页面不存在。<br>可能已被移动、删除或暂时不可用。</p>
+        
+        <a href="#" class="home-btn">返回首页</a>
+        
+        <div class="bamboo bamboo-left">
+            <div class="bamboo-leaf leaf1"></div>
+            <div class="bamboo-leaf leaf2"></div>
+            <div class="bamboo-leaf leaf3"></div>
+        </div>
+        
+        <div class="bamboo bamboo-right">
+            <div class="bamboo-leaf leaf4"></div>
+            <div class="bamboo-leaf leaf5"></div>
+            <div class="bamboo-leaf leaf6"></div>
+        </div>
+    </div>
+</body>
+</html>
