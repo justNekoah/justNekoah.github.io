@@ -179,7 +179,23 @@
         <a href="http://Hakimi.mesonekoah.website">哈基米科技工作室</a>
         <footer>
             <p>© 2025 justNekoah 个人主页 | 所有权利保留</p>
+            <p id="github-info">GitHub: <span id="github-username">正在加载...</span></p>
         </footer>
     </div>
+    
+    <script>
+    // 调用 GitHub API 获取你的信息
+    fetch('https://api.github.com/users/justNekoah') // 确保用户名是对的
+        .then(response => response.json())
+        .then(data => {
+            // 成功获取数据后，更新页面上的内容
+            document.getElementById('github-username').textContent = data.login; // 显示用户名
+            document.getElementById('github-info').style.marginTop = '10px'; // 添加一点上边距
+        })
+        .catch(error => {
+            console.error('获取GitHub信息失败:', error);
+            document.getElementById('github-username').textContent = '获取失败';
+        });
+</script>
 </body>
 </html>
