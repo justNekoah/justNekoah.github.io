@@ -830,7 +830,7 @@ justnekoah@yeah.net</a>
             if (!userData) return;
 
             const user = JSON.parse(userData);
-
+            
             // 这里需要调用后端API删除账号
             fetch(`${API_BASE}/delete-account`, {
                 method: 'POST',
@@ -863,7 +863,7 @@ justnekoah@yeah.net</a>
             if (!userData) return;
 
             const user = JSON.parse(userData);
-
+            
             // 这里需要调用后端API修改密码
             fetch(`${API_BASE}/change-password`, {
                 method: 'POST',
