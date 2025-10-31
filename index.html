@@ -62,14 +62,15 @@
             display: flex;
             align-items: center;
             margin-right: 20px;
+            gap: 20px;
         }
 
         .menu-items {
             display: flex;
+            gap: 20px;
         }
 
         .menu-item {
-            margin-right: 30px;
             font-size: 1.1rem;
             position: relative;
         }
@@ -79,6 +80,7 @@
             text-decoration: none;
             transition: color 0.3s;
             padding: 5px 0;
+            display: block;
         }
 
         .menu-item a:hover {
@@ -111,7 +113,6 @@
             color: white;
             font-weight: bold;
             cursor: pointer;
-            margin-right: 15px;
             transition: all 0.3s;
             border: 2px solid rgba(255, 255, 255, 0.3);
         }
@@ -166,6 +167,7 @@
 
         .hamburger-menu {
             position: relative;
+            display: none;
         }
 
         .hamburger-btn {
@@ -189,10 +191,11 @@
             top: 100%;
             right: 0;
             background: rgba(0, 0, 0, 0.8);
-            min-width: 150px;
+            min-width: 200px;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            z-index: 102;
         }
 
         .dropdown-content a {
@@ -201,6 +204,11 @@
             text-decoration: none;
             display: block;
             transition: background 0.3s;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown-content a:last-child {
+            border-bottom: none;
         }
 
         .dropdown-content a:hover {
@@ -322,7 +330,6 @@
             border-color: #a78bfa;
         }
 
-        /* 广告轮播区域样式 */
         .ad-container {
             max-width: 600px;
             margin: 30px auto;
@@ -419,8 +426,12 @@
                 display: none;
             }
 
-            .left-menu {
+            .user-avatar-container {
                 display: none;
+            }
+
+            .hamburger-menu {
+                display: block;
             }
 
             .footer-content {
@@ -434,6 +445,15 @@
 
             .ad-slide a {
                 font-size: 1.1rem;
+            }
+
+            .left-menu {
+                display: none;
+            }
+
+            .right-menu {
+                margin-right: 10px;
+                gap: 10px;
             }
         }
 
@@ -515,7 +535,6 @@
             transform: scale(1.2);
         }
 
-        /* 模态框样式 */
         .modal {
             display: none;
             position: fixed;
@@ -573,6 +592,42 @@
         .modal-btn:hover {
             transform: translateY(-2px);
         }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-group input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .mobile-welcome {
+            display: none;
+            margin-left: 10px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-welcome {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body>
@@ -581,25 +636,24 @@
     <div class="decoration"></div>
     <div class="decoration"></div>
 
-    <!-- 顶部菜单 -->
     <div class="top-menu">
-        <!-- 左侧欢迎信息 -->
         <div class="left-menu">
             <div class="welcome-text">
                 欢迎回来，<span class="username" id="usernameDisplay">未登录</span>
             </div>
         </div>
 
-        <!-- 右侧菜单 -->
         <div class="right-menu">
-            <!-- 常规菜单项 -->
+            <div class="mobile-welcome">
+                <span id="mobileUsernameDisplay">未登录</span>
+            </div>
+
             <div class="menu-items">
                 <div class="menu-item"><a href="index.html">首页</a></div>
-                <div class="menu-item"><a href="project.html">项目</a></div>
+                <div class="menu-item"><a href="https://web.products.mesonekoah.website" target="_blank">项目</a></div>
                 <div class="menu-item"><a href="about.html">关于</a></div>
             </div>
 
-            <!-- 用户头像（登录后显示） -->
             <div class="user-avatar-container" id="userAvatarContainer" style="display: none;">
                 <div class="user-avatar" id="userAvatar">
                     U
@@ -617,14 +671,19 @@
                 </div>
             </div>
 
-            <!-- 汉堡菜单 -->
             <div class="hamburger-menu">
                 <button class="hamburger-btn">☰</button>
                 <div class="dropdown-content" id="mainDropdown">
                     <a href="index.html"><i class="fas fa-home"></i> 首页</a>
-                    <a href="project.html"><i class="fas fa-project-diagram"></i> 项目</a>
+                    <a href="https://web.products.mesonekoah.website" target="_blank"><i class="fas fa-project-diagram"></i> 项目</a>
                     <a href="about.html"><i class="fas fa-info-circle"></i> 关于</a>
                     <hr>
+                    <div id="loggedInMenu" style="display: none;">
+                        <a href="#" id="mobileChangePasswordBtn"><i class="fas fa-key"></i> 修改密码</a>
+                        <a href="#" id="mobileLogoutBtn"><i class="fas fa-sign-out-alt"></i> 退出登录</a>
+                        <a href="#" id="mobileDeleteAccountBtn" style="color: #ff6b6b;"><i class="fas fa-trash"></i> 删除账号</a>
+                        <hr>
+                    </div>
                     <a href="user/sl.html" id="loginMenuBtn"><i class="fas fa-user"></i> 登录/注册</a>
                     <a href="https://b23.tv/ENTb3u8" target="_blank"><i class="fab fa-bilibili"></i> B站</a>
                     <a href="https://weibo.com" target="_blank"><i class="fab fa-weibo"></i> 微博</a>
@@ -633,7 +692,6 @@
         </div>
     </div>
 
-    <!-- 删除账号确认模态框 -->
     <div class="modal" id="deleteAccountModal">
         <div class="modal-content">
             <h3 class="modal-title">确认删除账号</h3>
@@ -645,7 +703,6 @@
         </div>
     </div>
 
-    <!-- 修改密码模态框 -->
     <div class="modal" id="changePasswordModal">
         <div class="modal-content">
             <h3 class="modal-title">修改密码</h3>
@@ -668,7 +725,6 @@
         </div>
     </div>
 
-    <!-- 页面内容 -->
     <div class="container">
         <h1 class="title floating">哈基米工作室</h1>
         <h2 class="subtitle">Hakimi Studio</h2>
@@ -681,22 +737,16 @@
             <p>致力于创造卓越的数字体验，专注于开发</p>
         </div>
 
-        <!-- 广告轮播区域 -->
         <div class="ad-container">
             <div class="ad-slider">
-                <!-- 广告1 -->
                 <div class="ad-slide">
                     <a href="https://langlangy.cn" target="_blank">价格低，配置好 点击进入浪浪云官网</a>
                 </div>
-                <!-- 广告2 -->
                 <div class="ad-slide">
-                    <a href="https://example.com/ad2" target="_blank">广告位招租
-justnekoah@yeah.net</a>
+                    <a href="https://example.com/ad2" target="_blank">广告位招租<br>justnekoah@yeah.net</a>
                 </div>
-                <!-- 广告3 -->
                 <div class="ad-slide">
-                    <a href="https://example.com/ad3" target="_blank">广告位招租
-justnekoah@yeah.net</a>
+                    <a href="https://example.com/ad3" target="_blank">广告位招租<br>justnekoah@yeah.net</a>
                 </div>
             </div>
 
@@ -757,11 +807,10 @@ justnekoah@yeah.net</a>
     </div>
 
     <script>
-        // API基础URL
         const API_BASE = 'https://api.mesonekoah.website/slapi';
 
-        // 页面元素
         const usernameDisplay = document.getElementById('usernameDisplay');
+        const mobileUsernameDisplay = document.getElementById('mobileUsernameDisplay');
         const userAvatarContainer = document.getElementById('userAvatarContainer');
         const userAvatar = document.getElementById('userAvatar');
         const userDropdown = document.getElementById('userDropdown');
@@ -771,8 +820,11 @@ justnekoah@yeah.net</a>
         const changePasswordBtn = document.getElementById('changePasswordBtn');
         const deleteAccountModal = document.getElementById('deleteAccountModal');
         const changePasswordModal = document.getElementById('changePasswordModal');
+        const loggedInMenu = document.getElementById('loggedInMenu');
+        const mobileChangePasswordBtn = document.getElementById('mobileChangePasswordBtn');
+        const mobileLogoutBtn = document.getElementById('mobileLogoutBtn');
+        const mobileDeleteAccountBtn = document.getElementById('mobileDeleteAccountBtn');
 
-        // Cookie操作函数
         function getCookie(name) {
             const nameEQ = name + "=";
             const ca = document.cookie.split(';');
@@ -788,7 +840,6 @@ justnekoah@yeah.net</a>
             document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
         }
 
-        // 检查登录状态并更新UI
         function checkLoginStatus() {
             const userData = getCookie('userData');
             if (userData) {
@@ -799,46 +850,46 @@ justnekoah@yeah.net</a>
             }
         }
 
-        // 更新UI为登录状态
         function updateUIForLoggedInUser(user) {
             usernameDisplay.textContent = user.username;
+            mobileUsernameDisplay.textContent = user.username;
             userAvatar.textContent = user.username.charAt(0).toUpperCase();
             userAvatarContainer.style.display = 'block';
-            loginMenuBtn.innerHTML = '<i class="fas fa-user-check"></i> 已登录';
-            loginMenuBtn.onclick = (e) => e.preventDefault();
+            
+            loggedInMenu.style.display = 'block';
+            loginMenuBtn.style.display = 'none';
         }
 
-        // 更新UI为未登录状态
         function updateUIForLoggedOutUser() {
             usernameDisplay.textContent = '未登录';
+            mobileUsernameDisplay.textContent = '未登录';
             userAvatarContainer.style.display = 'none';
-            loginMenuBtn.innerHTML = '<i class="fas fa-user"></i> 登录/注册';
-            loginMenuBtn.href = 'user/sl.html';
-            loginMenuBtn.onclick = null;
+            
+            loggedInMenu.style.display = 'none';
+            loginMenuBtn.style.display = 'block';
         }
 
-        // 退出登录
         function logout() {
             deleteCookie('userData');
             checkLoginStatus();
             alert('已成功退出登录');
         }
 
-        // 删除账号
         function deleteAccount() {
             const userData = getCookie('userData');
             if (!userData) return;
 
             const user = JSON.parse(userData);
-            
-            // 这里需要调用后端API删除账号
+            const authToken = user.authToken;
+
             fetch(`${API_BASE}/delete-account`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${authToken}`
                 },
                 body: JSON.stringify({
-                    userId: user.id
+                    password: prompt('请输入密码确认删除账号:')
                 })
             })
             .then(response => response.json())
@@ -847,6 +898,7 @@ justnekoah@yeah.net</a>
                     deleteCookie('userData');
                     checkLoginStatus();
                     alert('账号已成功删除');
+                    deleteAccountModal.style.display = 'none';
                 } else {
                     alert('删除账号失败: ' + data.error);
                 }
@@ -857,21 +909,20 @@ justnekoah@yeah.net</a>
             });
         }
 
-        // 修改密码
         function changePassword(currentPassword, newPassword) {
             const userData = getCookie('userData');
             if (!userData) return;
 
             const user = JSON.parse(userData);
-            
-            // 这里需要调用后端API修改密码
+            const authToken = user.authToken;
+
             fetch(`${API_BASE}/change-password`, {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${authToken}`
                 },
                 body: JSON.stringify({
-                    userId: user.id,
                     currentPassword: currentPassword,
                     newPassword: newPassword
                 })
@@ -881,6 +932,9 @@ justnekoah@yeah.net</a>
                 if (data.success) {
                     alert('密码修改成功');
                     changePasswordModal.style.display = 'none';
+                    document.getElementById('currentPassword').value = '';
+                    document.getElementById('newPassword').value = '';
+                    document.getElementById('confirmNewPassword').value = '';
                 } else {
                     alert('密码修改失败: ' + data.error);
                 }
@@ -891,7 +945,6 @@ justnekoah@yeah.net</a>
             });
         }
 
-        // 事件监听
         userAvatar.addEventListener('click', function(e) {
             e.stopPropagation();
             userDropdown.classList.toggle('show');
@@ -912,7 +965,24 @@ justnekoah@yeah.net</a>
             changePasswordModal.style.display = 'flex';
         });
 
-        // 模态框事件
+        mobileLogoutBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            logout();
+            document.getElementById('mainDropdown').classList.remove('show');
+        });
+
+        mobileDeleteAccountBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            deleteAccountModal.style.display = 'flex';
+            document.getElementById('mainDropdown').classList.remove('show');
+        });
+
+        mobileChangePasswordBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            changePasswordModal.style.display = 'flex';
+            document.getElementById('mainDropdown').classList.remove('show');
+        });
+
         document.getElementById('confirmDeleteBtn').addEventListener('click', deleteAccount);
         document.getElementById('cancelDeleteBtn').addEventListener('click', function() {
             deleteAccountModal.style.display = 'none';
@@ -943,24 +1013,58 @@ justnekoah@yeah.net</a>
 
         document.getElementById('cancelChangePasswordBtn').addEventListener('click', function() {
             changePasswordModal.style.display = 'none';
+            document.getElementById('currentPassword').value = '';
+            document.getElementById('newPassword').value = '';
+            document.getElementById('confirmNewPassword').value = '';
         });
 
-        // 点击页面其他区域关闭下拉菜单
         window.addEventListener('click', function() {
             userDropdown.classList.remove('show');
+            document.getElementById('mainDropdown').classList.remove('show');
         });
 
-        // 汉堡菜单功能
         document.querySelector('.hamburger-btn').addEventListener('click', function(e) {
             e.stopPropagation();
             document.getElementById('mainDropdown').classList.toggle('show');
         });
 
-        // 初始化
-        checkLoginStatus();
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.ad-slide');
+        const indicators = document.querySelectorAll('.ad-indicator');
+        const slider = document.querySelector('.ad-slider');
 
-        // 原有的广告轮播和其他功能保持不变
-        // ... (保留原有的广告轮播代码)
+        function showSlide(index) {
+            if (index < 0) index = slides.length - 1;
+            if (index >= slides.length) index = 0;
+            
+            currentSlide = index;
+            slider.style.transform = `translateX(-${currentSlide * 100}%)`;
+            
+            indicators.forEach((indicator, i) => {
+                indicator.classList.toggle('active', i === currentSlide);
+            });
+        }
+
+        document.querySelector('.prev-btn').addEventListener('click', () => {
+            showSlide(currentSlide - 1);
+        });
+
+        document.querySelector('.next-btn').addEventListener('click', () => {
+            showSlide(currentSlide + 1);
+        });
+
+        indicators.forEach((indicator, i) => {
+            indicator.addEventListener('click', () => {
+                showSlide(i);
+            });
+        });
+
+        setInterval(() => {
+            showSlide(currentSlide + 1);
+        }, 5000);
+
+        checkLoginStatus();
+        showSlide(0);
     </script>
 </body>
 </html>
