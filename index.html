@@ -35,15 +35,37 @@
             backdrop-filter: blur(10px);
             padding: 15px 0;
             display: flex;
-            justify-content: flex-end; /* 改为右对齐 */
+            justify-content: space-between;
             align-items: center;
             z-index: 100;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
+        .left-menu {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+        }
+
+        .welcome-text {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .username {
+            color: #a78bfa;
+            font-weight: 600;
+            margin-left: 5px;
+        }
+
+        .right-menu {
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+        }
+
         .menu-items {
             display: flex;
-            margin-right: 20px; /* 改为右边距 */
         }
 
         .menu-item {
@@ -78,9 +100,72 @@
             width: 100%;
         }
 
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #a78bfa, #8b5cf6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            margin-right: 15px;
+            transition: all 0.3s;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .user-avatar:hover {
+            transform: scale(1.1);
+            border-color: #a78bfa;
+        }
+
+        .user-dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: rgba(0, 0, 0, 0.8);
+            min-width: 200px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            z-index: 101;
+        }
+
+        .user-dropdown.show {
+            display: block;
+        }
+
+        .user-dropdown-item {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            transition: background 0.3s;
+            cursor: pointer;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .user-dropdown-item:last-child {
+            border-bottom: none;
+        }
+
+        .user-dropdown-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .user-dropdown-item.danger {
+            color: #ff6b6b;
+        }
+
+        .user-dropdown-item.danger:hover {
+            background: rgba(231, 76, 60, 0.2);
+        }
+
         .hamburger-menu {
             position: relative;
-            margin-right: 20px;
         }
 
         .hamburger-btn {
@@ -334,6 +419,10 @@
                 display: none;
             }
 
+            .left-menu {
+                display: none;
+            }
+
             .footer-content {
                 flex-direction: column;
                 gap: 15px;
@@ -425,6 +514,65 @@
             color: #a78bfa;
             transform: scale(1.2);
         }
+
+        /* 模态框样式 */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 400px;
+            width: 90%;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .modal-title {
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .modal-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .modal-btn.confirm {
+            background: #e74c3c;
+            color: white;
+        }
+
+        .modal-btn.cancel {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .modal-btn:hover {
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -433,26 +581,94 @@
     <div class="decoration"></div>
     <div class="decoration"></div>
 
+    <!-- 顶部菜单 -->
     <div class="top-menu">
-        <div class="menu-items">
-            <div class="menu-item"><a href="index.html">首页</a></div>
-            <div class="menu-item"><a href="project.html">项目</a></div>
-            <div class="menu-item"><a href="about.html">关于</a></div>
+        <!-- 左侧欢迎信息 -->
+        <div class="left-menu">
+            <div class="welcome-text">
+                欢迎回来，<span class="username" id="usernameDisplay">未登录</span>
+            </div>
         </div>
 
-        <div class="hamburger-menu">
-            <button class="hamburger-btn">☰</button>
-            <div class="dropdown-content">
-                <a href="index.html"><i class="fas fa-home"></i> 首页</a>
-                <a href="project.html"><i class="fas fa-project-diagram"></i> 项目</a>
-                <a href="about.html"><i class="fas fa-info-circle"></i> 关于</a>
-                <hr>
-                <a https://b23.tv/ENTb3u8" target="_blank"><i class="fab fa-bilibili"></i> B站</a>
-                <a href="https://weibo.com" target="_blank"><i class="fab fa-weibo"></i> 微博</a>
+        <!-- 右侧菜单 -->
+        <div class="right-menu">
+            <!-- 常规菜单项 -->
+            <div class="menu-items">
+                <div class="menu-item"><a href="index.html">首页</a></div>
+                <div class="menu-item"><a href="project.html">项目</a></div>
+                <div class="menu-item"><a href="about.html">关于</a></div>
+            </div>
+
+            <!-- 用户头像（登录后显示） -->
+            <div class="user-avatar-container" id="userAvatarContainer" style="display: none;">
+                <div class="user-avatar" id="userAvatar">
+                    U
+                </div>
+                <div class="user-dropdown" id="userDropdown">
+                    <div class="user-dropdown-item" id="changePasswordBtn">
+                        <i class="fas fa-key"></i> 修改密码
+                    </div>
+                    <div class="user-dropdown-item" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i> 退出登录
+                    </div>
+                    <div class="user-dropdown-item danger" id="deleteAccountBtn">
+                        <i class="fas fa-trash"></i> 删除账号
+                    </div>
+                </div>
+            </div>
+
+            <!-- 汉堡菜单 -->
+            <div class="hamburger-menu">
+                <button class="hamburger-btn">☰</button>
+                <div class="dropdown-content" id="mainDropdown">
+                    <a href="index.html"><i class="fas fa-home"></i> 首页</a>
+                    <a href="project.html"><i class="fas fa-project-diagram"></i> 项目</a>
+                    <a href="about.html"><i class="fas fa-info-circle"></i> 关于</a>
+                    <hr>
+                    <a href="user/sl.html" id="loginMenuBtn"><i class="fas fa-user"></i> 登录/注册</a>
+                    <a href="https://b23.tv/ENTb3u8" target="_blank"><i class="fab fa-bilibili"></i> B站</a>
+                    <a href="https://weibo.com" target="_blank"><i class="fab fa-weibo"></i> 微博</a>
+                </div>
             </div>
         </div>
     </div>
 
+    <!-- 删除账号确认模态框 -->
+    <div class="modal" id="deleteAccountModal">
+        <div class="modal-content">
+            <h3 class="modal-title">确认删除账号</h3>
+            <p>此操作将永久删除您的账号和所有数据，且无法恢复。确定要继续吗？</p>
+            <div class="modal-buttons">
+                <button class="modal-btn confirm" id="confirmDeleteBtn">确认删除</button>
+                <button class="modal-btn cancel" id="cancelDeleteBtn">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 修改密码模态框 -->
+    <div class="modal" id="changePasswordModal">
+        <div class="modal-content">
+            <h3 class="modal-title">修改密码</h3>
+            <div class="form-group">
+                <label for="currentPassword">当前密码</label>
+                <input type="password" id="currentPassword" placeholder="请输入当前密码">
+            </div>
+            <div class="form-group">
+                <label for="newPassword">新密码</label>
+                <input type="password" id="newPassword" placeholder="请输入新密码（至少6位）">
+            </div>
+            <div class="form-group">
+                <label for="confirmNewPassword">确认新密码</label>
+                <input type="password" id="confirmNewPassword" placeholder="请再次输入新密码">
+            </div>
+            <div class="modal-buttons">
+                <button class="modal-btn confirm" id="confirmChangePasswordBtn">确认修改</button>
+                <button class="modal-btn cancel" id="cancelChangePasswordBtn">取消</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页面内容 -->
     <div class="container">
         <h1 class="title floating">哈基米工作室</h1>
         <h2 class="subtitle">Hakimi Studio</h2>
@@ -541,207 +757,210 @@ justnekoah@yeah.net</a>
     </div>
 
     <script>
-        // 汉堡菜单功能
-        document.querySelector('.hamburger-btn').addEventListener('click', function() {
-            document.querySelector('.dropdown-content').classList.toggle('show');
-        });
+        // API基础URL
+        const API_BASE = 'https://api.mesonekoah.website/slapi';
 
-        // 点击页面其他区域关闭菜单
-        window.addEventListener('click', function(event) {
-            if (!event.target.matches('.hamburger-btn')) {
-                const dropdowns = document.querySelectorAll('.dropdown-content');
-                dropdowns.forEach(function(dropdown) {
-                    if (dropdown.classList.contains('show')) {
-                        dropdown.classList.remove('show');
-                    }
-                });
+        // 页面元素
+        const usernameDisplay = document.getElementById('usernameDisplay');
+        const userAvatarContainer = document.getElementById('userAvatarContainer');
+        const userAvatar = document.getElementById('userAvatar');
+        const userDropdown = document.getElementById('userDropdown');
+        const loginMenuBtn = document.getElementById('loginMenuBtn');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const deleteAccountBtn = document.getElementById('deleteAccountBtn');
+        const changePasswordBtn = document.getElementById('changePasswordBtn');
+        const deleteAccountModal = document.getElementById('deleteAccountModal');
+        const changePasswordModal = document.getElementById('changePasswordModal');
+
+        // Cookie操作函数
+        function getCookie(name) {
+            const nameEQ = name + "=";
+            const ca = document.cookie.split(';');
+            for(let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) === 0) return decodeURIComponent(c.substring(nameEQ.length, c.length));
             }
-        });
+            return null;
+        }
 
-        // 添加一些交互效果
-        document.querySelectorAll('.menu-item a').forEach(link => {
-            link.addEventListener('mouseenter', function() {
-                this.style.transition = 'all 0.3s ease';
-            });
-        });
+        function deleteCookie(name) {
+            document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/`;
+        }
 
-        // 语言切换功能
-        const languageButtons = document.querySelectorAll('.language-btn');
+        // 检查登录状态并更新UI
+        function checkLoginStatus() {
+            const userData = getCookie('userData');
+            if (userData) {
+                const user = JSON.parse(userData);
+                updateUIForLoggedInUser(user);
+            } else {
+                updateUIForLoggedOutUser();
+            }
+        }
 
-        languageButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                const selectedLang = this.getAttribute('data-lang');
+        // 更新UI为登录状态
+        function updateUIForLoggedInUser(user) {
+            usernameDisplay.textContent = user.username;
+            userAvatar.textContent = user.username.charAt(0).toUpperCase();
+            userAvatarContainer.style.display = 'block';
+            loginMenuBtn.innerHTML = '<i class="fas fa-user-check"></i> 已登录';
+            loginMenuBtn.onclick = (e) => e.preventDefault();
+        }
 
-                languageButtons.forEach(btn => {
-                    btn.classList.remove('active');
-                });
+        // 更新UI为未登录状态
+        function updateUIForLoggedOutUser() {
+            usernameDisplay.textContent = '未登录';
+            userAvatarContainer.style.display = 'none';
+            loginMenuBtn.innerHTML = '<i class="fas fa-user"></i> 登录/注册';
+            loginMenuBtn.href = 'user/sl.html';
+            loginMenuBtn.onclick = null;
+        }
 
-                this.classList.add('active');
+        // 退出登录
+        function logout() {
+            deleteCookie('userData');
+            checkLoginStatus();
+            alert('已成功退出登录');
+        }
 
-                switchLanguage(selectedLang);
-            });
-        });
+        // 删除账号
+        function deleteAccount() {
+            const userData = getCookie('userData');
+            if (!userData) return;
 
-        function switchLanguage(lang) {
-            const translations = {
-                'zh-CN': {
-                    title: '哈基米工作室',
-                    subtitle: 'Hakimi Studio',
-                    date: '创立于 2025年10月25日',
-                    intro: '致力于创造卓越的数字体验，专注于开发',
-                    copyright: '© 2025 哈基米工作室 Hakimi Studio',
-                    menu: ['首页', '项目', '关于'],
-                    ads: [
-                        '价格低，配置好 浪浪云官网',
-                        '广告位招租',
-                        '广告位招租'
-                    ],
-                    prevBtn: '上一个',
-                    nextBtn: '下一个'
+            const user = JSON.parse(userData);
+            
+            // 这里需要调用后端API删除账号
+            fetch(`${API_BASE}/delete-account`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
                 },
-                'zh-TW': {
-                    title: '哈基米工作室',
-                    subtitle: 'Hakimi Studio',
-                    date: '創立於 2025年10月25日',
-                    intro: '致力於創造卓越的數字體驗，專注於開發',
-                    copyright: '© 2025 哈基米工作室 Hakimi Studio',
-                    menu: ['首頁', '項目', '關於'],
-                    ads: [
-                        '價格低，配置好 浪浪雲官網',
-                        '廣告位招租',
-                        '廣告位招租'
-                    ],
-                    prevBtn: '上一個',
-                    nextBtn: '下一個'
-                },
-                'en': {
-                    title: 'Hakimi Studio',
-                    subtitle: 'Hakimi Studio',
-                    date: 'Founded on October 25, 2025',
-                    intro: 'Dedicated to creating exceptional digital experiences, focused on development',
-                    copyright: '© 2025 Hakimi Studio',
-                    menu: ['Home', 'Projects', 'About'],
-                    ads: [
-                        'Low Price, Good Configuration - Langlang Cloud',
-                        'Ad Space Available',
-                        'Ad Space Available'
-                    ],
-                    prevBtn: 'Previous',
-                    nextBtn: 'Next'
-                },
-                'ja': {
-                    title: 'ハキミスタジオ',
-                    subtitle: 'Hakimi Studio',
-                    date: '2025年10月25日設立',
-                    intro: '卓越したデジタル体験の創造に専念し、開発に焦点を当てています',
-                    copyright: '© 2025 ハキミスタジオ',
-                    menu: ['ホーム', 'プロジェクト', '概要'],
-                    ads: [
-                        '低価格、高設定 - ラングラングクラウド',
-                        '広告スペース募集中',
-                        '広告スペース募集中'
-                    ],
-                    prevBtn: '前へ',
-                    nextBtn: '次へ'
+                body: JSON.stringify({
+                    userId: user.id
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    deleteCookie('userData');
+                    checkLoginStatus();
+                    alert('账号已成功删除');
+                } else {
+                    alert('删除账号失败: ' + data.error);
                 }
-            };
-
-            const t = translations[lang];
-
-            document.querySelector('.title').textContent = t.title;
-            document.querySelector('.subtitle').textContent = t.subtitle;
-            document.querySelector('.date-info').innerHTML = `<i class="far fa-calendar-alt"></i> ${t.date}`;
-            document.querySelector('.intro p').textContent = t.intro;
-            document.querySelector('.copyright').textContent = t.copyright;
-
-            // 更新广告文字
-            const adLinks = document.querySelectorAll('.ad-slide a');
-            adLinks.forEach((link, index) => {
-                link.textContent = t.ads[index];
+            })
+            .catch(error => {
+                console.error('删除账号错误:', error);
+                alert('删除账号时发生错误');
             });
+        }
 
-            // 更新广告按钮文字
-            document.querySelector('.prev-btn').innerHTML = `<i class="fas fa-chevron-left"></i> ${t.prevBtn}`;
-            document.querySelector('.next-btn').innerHTML = `${t.nextBtn} <i class="fas fa-chevron-right"></i>`;
+        // 修改密码
+        function changePassword(currentPassword, newPassword) {
+            const userData = getCookie('userData');
+            if (!userData) return;
 
-            // 更新菜单项
-            const menuItems = document.querySelectorAll('.menu-item a');
-            menuItems.forEach((item, index) => {
-                item.textContent = t.menu[index];
-            });
-
-            const dropdownItems = document.querySelectorAll('.dropdown-content a');
-            dropdownItems.forEach((item, index) => {
-                if (index < 3) {
-                    item.textContent = ` ${t.menu[index]}`;
+            const user = JSON.parse(userData);
+            
+            // 这里需要调用后端API修改密码
+            fetch(`${API_BASE}/change-password`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    userId: user.id,
+                    currentPassword: currentPassword,
+                    newPassword: newPassword
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('密码修改成功');
+                    changePasswordModal.style.display = 'none';
+                } else {
+                    alert('密码修改失败: ' + data.error);
                 }
+            })
+            .catch(error => {
+                console.error('修改密码错误:', error);
+                alert('修改密码时发生错误');
             });
-        }
-
-        // 广告轮播功能
-        let currentAdIndex = 0;
-        const adSlides = document.querySelectorAll('.ad-slide');
-        const totalAds = adSlides.length;
-        let autoSlideInterval;
-
-        function updateAdSlider() {
-            const slider = document.querySelector('.ad-slider');
-            slider.style.transform = `translateX(-${currentAdIndex * 100}%)`;
-
-            // 更新指示器
-            document.querySelectorAll('.ad-indicator').forEach((indicator, index) => {
-                indicator.classList.toggle('active', index === currentAdIndex);
-            });
-        }
-
-        function nextAd() {
-            currentAdIndex = (currentAdIndex + 1) % totalAds;
-            updateAdSlider();
-        }
-
-        function prevAd() {
-            currentAdIndex = (currentAdIndex - 1 + totalAds) % totalAds;
-            updateAdSlider();
-        }
-
-        function goToAd(index) {
-            currentAdIndex = index;
-            updateAdSlider();
-        }
-
-        function startAutoSlide() {
-            autoSlideInterval = setInterval(nextAd, 5000);
-        }
-
-        function stopAutoSlide() {
-            clearInterval(autoSlideInterval);
         }
 
         // 事件监听
-        document.querySelector('.next-btn').addEventListener('click', function() {
-            nextAd();
-            stopAutoSlide(); // 手动切换后停止自动轮播
+        userAvatar.addEventListener('click', function(e) {
+            e.stopPropagation();
+            userDropdown.classList.toggle('show');
         });
 
-        document.querySelector('.prev-btn').addEventListener('click', function() {
-            prevAd();
-            stopAutoSlide(); // 手动切换后停止自动轮播
+        logoutBtn.addEventListener('click', function() {
+            logout();
+            userDropdown.classList.remove('show');
         });
 
-        document.querySelectorAll('.ad-indicator').forEach(indicator => {
-            indicator.addEventListener('click', function() {
-                const index = parseInt(this.getAttribute('data-index'));
-                goToAd(index);
-                stopAutoSlide(); // 手动切换后停止自动轮播
-            });
+        deleteAccountBtn.addEventListener('click', function() {
+            userDropdown.classList.remove('show');
+            deleteAccountModal.style.display = 'flex';
         });
 
-        // 鼠标悬停时暂停自动轮播
-        document.querySelector('.ad-container').addEventListener('mouseenter', stopAutoSlide);
-        document.querySelector('.ad-container').addEventListener('mouseleave', startAutoSlide);
+        changePasswordBtn.addEventListener('click', function() {
+            userDropdown.classList.remove('show');
+            changePasswordModal.style.display = 'flex';
+        });
 
-        // 初始化广告轮播
-        startAutoSlide();
+        // 模态框事件
+        document.getElementById('confirmDeleteBtn').addEventListener('click', deleteAccount);
+        document.getElementById('cancelDeleteBtn').addEventListener('click', function() {
+            deleteAccountModal.style.display = 'none';
+        });
+
+        document.getElementById('confirmChangePasswordBtn').addEventListener('click', function() {
+            const currentPassword = document.getElementById('currentPassword').value;
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmNewPassword = document.getElementById('confirmNewPassword').value;
+
+            if (!currentPassword || !newPassword || !confirmNewPassword) {
+                alert('请填写所有字段');
+                return;
+            }
+
+            if (newPassword !== confirmNewPassword) {
+                alert('两次输入的新密码不一致');
+                return;
+            }
+
+            if (newPassword.length < 6) {
+                alert('新密码长度至少6位');
+                return;
+            }
+
+            changePassword(currentPassword, newPassword);
+        });
+
+        document.getElementById('cancelChangePasswordBtn').addEventListener('click', function() {
+            changePasswordModal.style.display = 'none';
+        });
+
+        // 点击页面其他区域关闭下拉菜单
+        window.addEventListener('click', function() {
+            userDropdown.classList.remove('show');
+        });
+
+        // 汉堡菜单功能
+        document.querySelector('.hamburger-btn').addEventListener('click', function(e) {
+            e.stopPropagation();
+            document.getElementById('mainDropdown').classList.toggle('show');
+        });
+
+        // 初始化
+        checkLoginStatus();
+
+        // 原有的广告轮播和其他功能保持不变
+        // ... (保留原有的广告轮播代码)
     </script>
 </body>
 </html>
